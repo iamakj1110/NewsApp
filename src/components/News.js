@@ -121,9 +121,9 @@ export class News extends Component {
                 <h2 className="text-center"> NewsMonkey </h2>
                 {/* {this.state.loading && <Spinner />} */}
                 <InfiniteScroll
-                    dataLength={this.state.articles.length} //This is important field to render the next data
+                    dataLength={this?.state?.articles?.length} //This is important field to render the next data
                     next={this.fetchMoreData}
-                    hasMore={this.state.articles.length !== this.state.totalResults}
+                    hasMore={this?.state?.articles?.length !== this.state.totalResults}
                     loader={<Spinner />}
                     >
 
