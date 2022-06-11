@@ -5,8 +5,9 @@ import PropTypes from 'prop-types'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import './News.css'
 
-export class News extends Component {
 
+export class News extends Component {
+    
      
     static defaultProps = {
         country: "in",
@@ -47,8 +48,9 @@ export class News extends Component {
     }
 
     updateNews= async () => {
+        const API_ENDPOINT="https://newsapi.org/v2/top-headlines";
         this.props.setProgress(10);
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=1c1a6ae176954ee69802d3cf787ae76f&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+        const url = `${API_ENDPOINT}?country=${this.props.country}&category=${this.props.category}&apiKey=1c1a6ae176954ee69802d3cf787ae76f&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         this.setState({ loading: true });
         this.props.setProgress(33);
         let data = await fetch(url);
@@ -65,8 +67,8 @@ export class News extends Component {
 
     fetchMoreData = async () => {
 
-      
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=1c1a6ae176954ee69802d3cf787ae76f&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+        const API_ENDPOINT="https://newsapi.org/v2/top-headlines";
+        const url = `${API_ENDPOINT}?country=${this.props.country}&category=${this.props.category}&apiKey=1c1a6ae176954ee69802d3cf787ae76f&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         this.setState({ page: this.state.page + 1 })
         let data = await fetch(url);
         let parsedData = await data.json()
